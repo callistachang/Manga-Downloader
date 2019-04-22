@@ -1,9 +1,5 @@
 import requests, bs4, time, os, getpass, re
 
-
-### functions for creating folders ###
-
-
 #creates a parent folder containing manga subfolders
 def create_parent_folder(manga):
     parent_folder = f"C:\\Users\\{getpass.getuser()}\\Desktop\\Downloaded Manga"    #creates a 'Downloaded Manga' folder on the user's Desktop
@@ -32,9 +28,6 @@ def create_subfolder_name(chapter_str):
     else:
         return chapter_str
 
-### functions related to processing URLs ###
-
-        
 #returns the HTML source code of any webpage
 def get_source_code(url):
     res = requests.get(url)
@@ -62,10 +55,6 @@ def go_to_next_chapter(url, website):
     else:
         return None
 
-
-### functions just to be extra ###
-
-
 def done_message(start_time):
     end_time = time.time()
     download_minutes = (end_time-start_time) // 60
@@ -75,10 +64,6 @@ def done_message(start_time):
 
 def line_break():
     print("x-x-x-x-x-x-x-x-x-x-x-x-x-x-x-x-x-x-x-x")
-
-
-### functions in main() ###
-
 
 def get_manga_input():
     input_title = input("Which manga would you like to download?: ")    #gets user input for what manga he's searching for
@@ -187,10 +172,6 @@ def download_manga(url, website, folder):
         else:
             done_message(start_time)
             break
-
-
-### yeet ###
-
 
 def main():
     title_list, info_list = get_manga_input()                           #get user's search input; returns search results
