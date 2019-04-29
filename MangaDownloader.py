@@ -1,5 +1,9 @@
 import requests, bs4, time, os, getpass, re
 
+"""
+Creating directories
+"""
+
 #creates a parent folder containing manga subfolders
 def create_parent_folder(manga):
     parent_folder = f"C:\\Users\\{getpass.getuser()}\\Desktop\\Downloaded Manga"    #creates a 'Downloaded Manga' folder on the user's Desktop
@@ -27,6 +31,10 @@ def create_subfolder_name(chapter_str):
         return "0" + chapter_str
     else:
         return chapter_str
+    
+"""
+Useful functions
+"""
 
 #returns the HTML source code of any webpage
 def get_source_code(url):
@@ -38,7 +46,7 @@ def get_source_code(url):
 def get_image_links(url, website):
     chapter_code = get_source_code(url)
     if website == "MangaSim":
-        img_url_list = chapter_code.select("div[class='vung_doc'] img")
+        img_url_list = chapter_code.select("div[class='panel-read-story'] img")
     elif website == "MangaNelo":
         img_url_list = chapter_code.select("div[class='vung-doc'] img")
     return img_url_list
@@ -54,6 +62,10 @@ def go_to_next_chapter(url, website):
         return next_chapter.get("href")
     else:
         return None
+    
+"""
+Functions for decoration
+"""
 
 def done_message(start_time):
     end_time = time.time()
@@ -64,6 +76,10 @@ def done_message(start_time):
 
 def line_break():
     print("x-x-x-x-x-x-x-x-x-x-x-x-x-x-x-x-x-x-x-x")
+    
+"""
+Main program
+"""
 
 def get_manga_input():
     input_title = input("Which manga would you like to download?: ")    #gets user input for what manga he's searching for
